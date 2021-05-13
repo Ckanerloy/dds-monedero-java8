@@ -22,7 +22,7 @@ public class Cuenta {
     this.movimientos = movimientos;
   }
 
-  public void poner(double cuanto) {
+  public void depositar(double cuanto) {
     this.validarMontoNegativo(cuanto);
     if (getMovimientos().stream().filter(movimiento -> movimiento.fueDepositado(LocalDate.now())).count() >= 3) {
       throw new MaximaCantidadDepositosException("Ya excedio los " + 3 + " depositos diarios");
@@ -44,7 +44,7 @@ public class Cuenta {
     }
   }
 
-  public void sacar(double cuanto) {
+  public void extraer(double cuanto) {
     this.validarMontoNegativo(cuanto);
     if (getSaldo() - cuanto < 0) {
       throw new SaldoMenorException("No puede sacar mas de " + getSaldo() + " $");
